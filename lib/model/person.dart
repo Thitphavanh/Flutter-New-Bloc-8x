@@ -1,10 +1,8 @@
-import 'dart:convert';
-
 class Person {
-  String firstName;
-  String lastName;
-  String message;
-  String id;
+  String? firstName;
+  String? lastName;
+  String? message;
+  String? id;
   Person({
     required this.firstName,
     required this.lastName,
@@ -12,10 +10,12 @@ class Person {
     required this.id,
   });
 
-  factory Person.fromJson(Map<String, dynamic> json) => Person(
-        firstName: json['firstName'],
-        lastName: json['lastName'],
-        message: json['message'],
-        id: json['id'],
-      );
+  factory Person.fromJson(Map<String, dynamic> json) {
+    return Person(
+      firstName: json['firstName'],
+      lastName: json['lastName'],
+      message: json['message'],
+      id: json['id'],
+    );
+  }
 }

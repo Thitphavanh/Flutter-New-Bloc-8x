@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_new_bloc_8x/bloc/common_bloc.dart';
 import 'package:flutter_new_bloc_8x/model/person.dart';
@@ -17,12 +16,14 @@ class PersonBloc extends Bloc<MyEvent, MyState> {
     final res = await http.get(
       Uri.parse('https://623addef2e056d1037e8aaba.mockapi.io/person'),
     );
+    
     if (res.statusCode != HttpStatus.ok) {
       emit(StateError(message: res.body));
       return;
     }
-    final json = jsonDecode(res.body) as List;
+    final json = jsonDecode(utf8.decode(res.bodyBytes)) as List;
     final persons = json.map((e) => Person.fromJson(e)).toList();
+
     emit(GetPersonsStateSuccess(persons: persons));
   }
 }
