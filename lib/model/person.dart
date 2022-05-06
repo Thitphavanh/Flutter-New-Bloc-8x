@@ -1,8 +1,8 @@
 class Person {
-  String? firstName;
-  String? lastName;
-  String? message;
-  String? id;
+  String firstName;
+  String lastName;
+  String message;
+  String id;
   Person({
     required this.firstName,
     required this.lastName,
